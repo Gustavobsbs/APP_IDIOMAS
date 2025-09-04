@@ -24,7 +24,7 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
         title: Text('Flashcards'),
         backgroundColor: Colors.purple[600],
         elevation: 0,
-      ),
+      ), 
       body: Container(
         padding: EdgeInsets.all(16),
         child: Column(
@@ -189,7 +189,7 @@ class _FlashcardsScreenState extends State<FlashcardsScreen> {
   Widget _buildDifficultyButton(String label, Color color, IconData icon) {
     return ElevatedButton.icon(
       onPressed: () {
-        // Lógica para marcar dificuldade
+       
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Marcado como: $label')),
         );

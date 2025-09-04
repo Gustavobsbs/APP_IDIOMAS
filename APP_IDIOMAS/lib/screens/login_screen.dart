@@ -235,7 +235,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 
                 SizedBox(height: 32),
                 
-                // Botão de Login
+              
                 SizedBox(
                   width: double.infinity,
                   height: 56,

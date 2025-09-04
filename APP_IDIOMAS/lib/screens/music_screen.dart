@@ -208,7 +208,7 @@ class _MusicScreenState extends State<MusicScreen> {
             
             SizedBox(height: 16),
             
-            // Botões de ação
+          
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

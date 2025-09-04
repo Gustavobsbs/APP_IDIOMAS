@@ -305,7 +305,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
             ),
             child: Column(
               children: [
-                // Avatar do parceiro
+              
                 CircleAvatar(
                   radius: 40,
                   backgroundColor: Colors.green[600],
@@ -418,7 +418,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              // Botão mute
+              
               GestureDetector(
                 onTap: () {
                   setState(() {

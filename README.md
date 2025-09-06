@@ -2,7 +2,7 @@
 
 ## 🚀 Projeto Node.js + Sequelize + Flutter
 
-#### Este projeto consiste em um backend desenvolvido em Node.js com Sequelize para interação com o banco de dados e um frontend em Flutter. O repositório do Flutter está incluído como um submodule do Git.
+#### Este projeto consiste em um backend desenvolvido em Node.js com Sequelize para interação com o banco de dados e um frontend em Flutter.
 
 ## ⚙️ Pré-requisitos
 

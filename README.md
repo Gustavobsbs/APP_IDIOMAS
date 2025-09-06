@@ -42,7 +42,6 @@ _Isso cria a estrutura de pastas:_
  ┃ ┣ 📂 routes/            # Rotas da API
  ┃ ┣ 📜 package.json
  ┃ ┗ 📜 server.js
- ┣ 📂 frontend/            # Código do Flutter
  ┃ ┣ 📂 lib/
  ┃ ┣ 📜 pubspec.yaml
  ┃ ┗ ...

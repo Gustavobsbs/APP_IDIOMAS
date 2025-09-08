@@ -1,5 +1,14 @@
 # ✔️ Aplicação Idiomas
 
+Integrantes do grupo:  
+Beatriz Silva De Sousa
+Bruney Mota Trindade 
+Gustavo Barbosa Santos
+Janayna Mirelly Henrique Santos 
+Joao Caio Da Silva Santos
+Maria Eduarda Alves Gaia 
+
+
 ## 🚀 Projeto Node.js + Sequelize + Flutter
 
 #### Este projeto consiste em um backend desenvolvido em Node.js com Sequelize para interação com o banco de dados e um frontend em Flutter.

@@ -1,12 +1,12 @@
 # ✔️ Aplicação Idiomas
 
-Integrantes do grupo:  
-Beatriz Silva De Sousa
-Bruney Mota Trindade 
-Gustavo Barbosa Santos
-Janayna Mirelly Henrique Santos 
-Joao Caio Da Silva Santos
-Maria Eduarda Alves Gaia 
+*Integrantes do grupo:*
+- Beatriz Silva De Sousa  
+- Bruney Mota Trindade  
+- Gustavo Barbosa Santos  
+- Janayna Mirelly Henrique Santos  
+- Joao Caio Da Silva Santos  
+- Maria Eduarda Alves Gaia 
 
 
 ## 🚀 Projeto Node.js + Sequelize + Flutter

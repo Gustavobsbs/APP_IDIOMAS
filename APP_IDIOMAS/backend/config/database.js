@@ -1,8 +1,8 @@
 import { Sequelize } from 'sequelize';
 
 // Configurações do banco de dados
-const sequelize = new Sequelize('aplicacao', 'usuario', 'minhasenha', {
-  host: 'localhost',
+const sequelize = new Sequelize('aplicacao', 'root', 'root', {
+  host: '127.0.0.1',
   dialect: 'mysql',
   logging: console.log,
   define: {

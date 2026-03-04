@@ -15,6 +15,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool _isPasswordVisible = false;
   bool _isLoading = false;
 
+  // Paleta Corporativa (Mesma do Login)
+  final Color primaryColor = Color(0xFF1A237E);
+  final Color backgroundColor = Color(0xFFF5F7FA);
+  final Color textColor = Color(0xFF263238);
+
   @override
   void dispose() {
     _nameController.dispose();
@@ -23,7 +28,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.dispose();
   }
 
-  // 🔹 Função para registrar usuário
   Future<void> _register() async {
     if (!_formKey.currentState!.validate()) return;
 
@@ -46,12 +50,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Erro ao registrar usuário')),
+          SnackBar(
+            content: Text('Erro ao registrar usuário'),
+            backgroundColor: Color(0xFF37474F),
+          ),
         );
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Erro: $e')),
+        SnackBar(
+          content: Text('Erro: $e'),
+          backgroundColor: Color(0xFF37474F),
+        ),
       );
     } finally {
       setState(() {
@@ -63,7 +73,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: backgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.all(24),
@@ -72,57 +82,65 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 40),
-                Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: Colors.blue[600],
-                    borderRadius: BorderRadius.circular(25),
+                
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back, color: textColor),
+                    onPressed: () => Navigator.of(context).pushReplacementNamed('/login'),
                   ),
-                  child: Icon(Icons.language, size: 50, color: Colors.white),
                 ),
+                
+                SizedBox(height: 20),
+                
+                
+                FluentLogo(size: 100),
                 SizedBox(height: 24),
+                
+
                 Text(
-                  'Cadastro',
+                  'Novo Cadastro',
                   style: TextStyle(
-                      fontSize: 32,
+                      fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: Colors.grey[800]),
+                      color: textColor,
+                      letterSpacing: -0.5),
                 ),
                 SizedBox(height: 8),
                 Text(
-                  'Crie sua conta e comece a aprender',
+                  'Preencha seus dados para acesso ao sistema',
                   style: TextStyle(fontSize: 16, color: Colors.grey[600]),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 40),
+                
                 // Nome
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'Nome',
+                    'Nome Completo',
                     style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey[800]),
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: textColor),
                   ),
                 ),
                 SizedBox(height: 8),
                 TextFormField(
                   controller: _nameController,
+                  style: TextStyle(color: textColor),
                   decoration: InputDecoration(
                     hintText: 'Seu nome',
-                    prefixIcon: Icon(Icons.person, color: Colors.grey[500]),
+                    prefixIcon: Icon(Icons.person_outline, color: Colors.grey[500]),
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(8),
                         borderSide: BorderSide(color: Colors.grey[300]!)),
                     enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(8),
                         borderSide: BorderSide(color: Colors.grey[300]!)),
                     focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: Colors.blue[600]!, width: 2)),
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(color: primaryColor, width: 2)),
                     filled: true,
                     fillColor: Colors.white,
                   ),
@@ -133,33 +151,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                 ),
                 SizedBox(height: 16),
+                
                 // Email
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'Email',
+                    'Email Corporativo',
                     style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey[800]),
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: textColor),
                   ),
                 ),
                 SizedBox(height: 8),
                 TextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
+                  style: TextStyle(color: textColor),
                   decoration: InputDecoration(
-                    hintText: 'seu@email.com',
+                    hintText: 'nome@empresa.com',
                     prefixIcon: Icon(Icons.email_outlined, color: Colors.grey[500]),
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(8),
                         borderSide: BorderSide(color: Colors.grey[300]!)),
                     enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(8),
                         borderSide: BorderSide(color: Colors.grey[300]!)),
                     focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: Colors.blue[600]!, width: 2)),
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(color: primaryColor, width: 2)),
                     filled: true,
                     fillColor: Colors.white,
                   ),
@@ -172,23 +192,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                 ),
                 SizedBox(height: 16),
+                
                 // Senha
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'Senha',
+                    'Criar Senha',
                     style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey[800]),
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: textColor),
                   ),
                 ),
                 SizedBox(height: 8),
                 TextFormField(
                   controller: _passwordController,
                   obscureText: !_isPasswordVisible,
+                  style: TextStyle(color: textColor),
                   decoration: InputDecoration(
-                    hintText: 'Sua senha',
+                    hintText: 'Mínimo 6 caracteres',
                     prefixIcon: Icon(Icons.lock_outline, color: Colors.grey[500]),
                     suffixIcon: IconButton(
                       icon: Icon(
@@ -199,14 +221,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           () => _isPasswordVisible = !_isPasswordVisible),
                     ),
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(8),
                         borderSide: BorderSide(color: Colors.grey[300]!)),
                     enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(8),
                         borderSide: BorderSide(color: Colors.grey[300]!)),
                     focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: Colors.blue[600]!, width: 2)),
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(color: primaryColor, width: 2)),
                     filled: true,
                     fillColor: Colors.white,
                   ),
@@ -218,30 +240,111 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     return null;
                   },
                 ),
+                
                 SizedBox(height: 32),
+                
                 SizedBox(
                   width: double.infinity,
                   height: 56,
                   child: ElevatedButton(
                     onPressed: _isLoading ? null : _register,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue[600],
+                      backgroundColor: primaryColor,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)),
-                      elevation: 0,
+                          borderRadius: BorderRadius.circular(8)),
+                      elevation: 2,
                     ),
                     child: _isLoading
                         ? CircularProgressIndicator(color: Colors.white)
                         : Text(
-                            'Cadastrar',
+                            'FINALIZAR CADASTRO',
                             style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.0,
                                 color: Colors.white),
                           ),
                   ),
                 ),
               ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class FluentLogo extends StatelessWidget {
+  final double size;
+
+  const FluentLogo({Key? key, this.size = 100}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final Gradient logoGradient = LinearGradient(
+      colors: [Color(0xFF7B1FA2), Color(0xFF1A237E)],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    );
+
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: logoGradient,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 10,
+            offset: Offset(0, 5),
+          )
+        ],
+      ),
+      padding: EdgeInsets.all(size * 0.05), 
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          shape: BoxShape.circle,
+        ),
+        padding: EdgeInsets.all(size * 0.015), 
+        child: Container(
+          decoration: BoxDecoration(
+             shape: BoxShape.circle,
+             gradient: logoGradient,
+          ),
+          padding: EdgeInsets.all(size * 0.04),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white, 
+              shape: BoxShape.circle,
+            ),
+            child: Center(
+              child: ShaderMask(
+                shaderCallback: (bounds) => logoGradient.createShader(bounds),
+                child: RichText(
+                  text: TextSpan(
+                    style: TextStyle(
+                      fontFamily: 'Serif',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white, 
+                      height: 1.0,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: 'F',
+                        style: TextStyle(fontSize: size * 0.55),
+                      ),
+                      TextSpan(
+                        text: 'c',
+                        style: TextStyle(fontSize: size * 0.35),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
         ),

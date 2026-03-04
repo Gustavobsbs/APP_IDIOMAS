@@ -16,13 +16,16 @@ class _ConversationScreenState extends State<ConversationScreen> {
   String partnerCountry = '';
   int callDuration = 0;
   
+  // Paleta Corporativa
+  final Color primaryColor = Color(0xFF1A237E);
+  final Color accentColor = Color(0xFF283593);
+  final Color backgroundColor = Color(0xFFF5F7FA);
+  final Color textColor = Color(0xFF263238);
 
   final List<Map<String, String>> mockUsers = [
     {'name': 'Maria Santos', 'level': 'Intermediário', 'country': 'Brasil', 'avatar': 'M'},
     {'name': 'John Smith', 'level': 'Avançado', 'country': 'EUA', 'avatar': 'J'},
     {'name': 'Pierre Dubois', 'level': 'Básico', 'country': 'França', 'avatar': 'P'},
-    {'name': 'Ana García', 'level': 'Intermediário', 'country': 'Espanha', 'avatar': 'A'},
-    {'name': 'Carlos Lima', 'level': 'Básico', 'country': 'Brasil', 'avatar': 'C'},
   ];
 
   void _startSearching() async {
@@ -30,10 +33,8 @@ class _ConversationScreenState extends State<ConversationScreen> {
       isSearching = true;
     });
 
-
     await Future.delayed(Duration(seconds: 3));
     
-  
     final random = Random();
     final selectedUser = mockUsers[random.nextInt(mockUsers.length)];
     
@@ -81,10 +82,12 @@ class _ConversationScreenState extends State<ConversationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        title: Text('Conversação'),
-        backgroundColor: Colors.green[600],
+        title: Text('SIMULAÇÃO DE CONVERSA', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, letterSpacing: 1.2)),
+        backgroundColor: primaryColor,
         elevation: 0,
+        centerTitle: true,
       ),
       body: Container(
         padding: EdgeInsets.all(16),
@@ -104,29 +107,29 @@ class _ConversationScreenState extends State<ConversationScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Ícone principal
           Container(
             width: 120,
             height: 120,
             decoration: BoxDecoration(
-              color: Colors.green[100],
+              color: Colors.white,
               shape: BoxShape.circle,
+              border: Border.all(color: primaryColor.withOpacity(0.2), width: 2),
             ),
             child: Icon(
-              Icons.people,
-              size: 60,
-              color: Colors.green[600],
+              Icons.groups,
+              size: 50,
+              color: primaryColor,
             ),
           ),
           
           SizedBox(height: 32),
           
           Text(
-            'Pratique Conversação',
+            'Prática Profissional',
             style: TextStyle(
-              fontSize: 28,
+              fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: Colors.grey[800],
+              color: textColor,
             ),
             textAlign: TextAlign.center,
           ),
@@ -134,7 +137,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
           SizedBox(height: 16),
           
           Text(
-            'Conecte-se com outros usuários ao redor do mundo para praticar conversação em tempo real',
+            'Conecte-se com colegas globais para simular situações de negócios',
             style: TextStyle(
               fontSize: 16,
               color: Colors.grey[600],
@@ -147,28 +150,31 @@ class _ConversationScreenState extends State<ConversationScreen> {
           Container(
             padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: Colors.blue[50],
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: Colors.blue[200]!),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Colors.grey.shade300),
             ),
             child: Column(
               children: [
-                Icon(Icons.lightbulb, color: Colors.blue[600], size: 32),
+                Icon(Icons.lightbulb_outline, color: accentColor, size: 28),
                 SizedBox(height: 12),
                 Text(
-                  'Dicas para uma boa conversa:',
+                  'DIRETRIZES DE COMUNICAÇÃO',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 12,
                     fontWeight: FontWeight.bold,
-                    color: Colors.blue[800],
+                    color: accentColor,
+                    letterSpacing: 1.0,
                   ),
                 ),
                 SizedBox(height: 8),
                 Text(
-                  '• Seja respeitoso e paciente\n• Fale devagar e claramente\n• Ajude seu parceiro quando necessário\n• Divirta-se aprendendo!',
+                  '• Mantenha o profissionalismo\n• Use vocabulário formal\n• Foque em clareza e objetividade',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14,
-                    color: Colors.blue[700],
+                    color: Colors.grey[700],
+                    height: 1.5,
                   ),
                 ),
               ],
@@ -182,21 +188,22 @@ class _ConversationScreenState extends State<ConversationScreen> {
             height: 56,
             child: ElevatedButton.icon(
               onPressed: _startSearching,
-              icon: Icon(Icons.search, size: 24),
+              icon: Icon(Icons.search, size: 20),
               label: Text(
-                'Encontrar Parceiro',
+                'INICIAR SESSÃO',
                 style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.0,
                 ),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green[600],
+                backgroundColor: primaryColor,
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                elevation: 0,
+                elevation: 2,
               ),
             ),
           ),
@@ -210,55 +217,25 @@ class _ConversationScreenState extends State<ConversationScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-  
-          Container(
-            width: 120,
-            height: 120,
-            decoration: BoxDecoration(
-              color: Colors.orange[100],
-              shape: BoxShape.circle,
-            ),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.orange[600]!),
-                  strokeWidth: 3,
-                ),
-                Icon(
-                  Icons.search,
-                  size: 40,
-                  color: Colors.orange[600],
-                ),
-              ],
-            ),
+          CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
+            strokeWidth: 4,
           ),
-          
           SizedBox(height: 32),
-          
           Text(
-            'Procurando parceiro...',
+            'Localizando parceiro...',
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: Colors.grey[800],
+              color: textColor,
             ),
           ),
-          
           SizedBox(height: 16),
-          
           Text(
-            'Conectando você com alguém do seu nível',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey[600],
-            ),
-            textAlign: TextAlign.center,
+            'Buscando perfil compatível com seu nível',
+            style: TextStyle(fontSize: 14, color: Colors.grey[600]),
           ),
-          
           SizedBox(height: 40),
-          
-  
           OutlinedButton(
             onPressed: () {
               setState(() {
@@ -266,19 +243,13 @@ class _ConversationScreenState extends State<ConversationScreen> {
               });
             },
             style: OutlinedButton.styleFrom(
-              padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+              foregroundColor: textColor,
               side: BorderSide(color: Colors.grey[400]!),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(8),
               ),
             ),
-            child: Text(
-              'Cancelar',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey[700],
-              ),
-            ),
+            child: Text('CANCELAR'),
           ),
         ],
       ),
@@ -289,123 +260,85 @@ class _ConversationScreenState extends State<ConversationScreen> {
     return Expanded(
       child: Column(
         children: [
-    
           Container(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.all(24),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(8),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.1),
-                  spreadRadius: 1,
-                  blurRadius: 5,
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 10,
                 ),
               ],
             ),
             child: Column(
               children: [
-              
                 CircleAvatar(
                   radius: 40,
-                  backgroundColor: Colors.green[600],
+                  backgroundColor: primaryColor,
                   child: Text(
                     currentPartner.isNotEmpty ? currentPartner[0] : 'U',
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                 ),
-                
                 SizedBox(height: 16),
-            
-
                 Text(
                   currentPartner,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Colors.grey[800],
+                    color: textColor,
                   ),
                 ),
-                
-                SizedBox(height: 4),
-                
-
+                SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.trending_up, size: 16, color: Colors.grey[600]),
-                    SizedBox(width: 4),
-                    Text(
-                      partnerLevel,
-                      style: TextStyle(color: Colors.grey[600]),
-                    ),
-                    SizedBox(width: 16),
-                    Icon(Icons.location_on, size: 16, color: Colors.grey[600]),
-                    SizedBox(width: 4),
-                    Text(
-                      partnerCountry,
-                      style: TextStyle(color: Colors.grey[600]),
-                    ),
+                    _buildTag(partnerLevel),
+                    SizedBox(width: 8),
+                    _buildTag(partnerCountry),
                   ],
                 ),
-                
-                SizedBox(height: 16),
-              
-  
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  decoration: BoxDecoration(
-                    color: Colors.green[50],
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    _formatDuration(callDuration),
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.green[700],
-                    ),
+                SizedBox(height: 24),
+                Text(
+                  _formatDuration(callDuration),
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w300,
+                    color: primaryColor,
                   ),
                 ),
               ],
             ),
           ),
           
-          SizedBox(height: 32),
+          SizedBox(height: 24),
           
- 
           Container(
             padding: EdgeInsets.all(16),
+            width: double.infinity,
             decoration: BoxDecoration(
-              color: Colors.blue[50],
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.blue[200]!),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Colors.grey.shade200),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Tópicos sugeridos:',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue[800],
-                  ),
+                  'PAUTA SUGERIDA',
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey[600]),
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 12),
                 Wrap(
                   spacing: 8,
-                  runSpacing: 4,
+                  runSpacing: 8,
                   children: [
-                    _buildTopicChip('Hobbies'),
-                    _buildTopicChip('Viagens'),
-                    _buildTopicChip('Comida'),
-                    _buildTopicChip('Trabalho'),
-                    _buildTopicChip('Cultura'),
+                    _buildTopicChip('Projetos'),
+                    _buildTopicChip('Carreira'),
+                    _buildTopicChip('Tecnologia'),
+                    _buildTopicChip('Mercado'),
                   ],
                 ),
               ],
@@ -414,77 +347,48 @@ class _ConversationScreenState extends State<ConversationScreen> {
           
           Spacer(),
           
- 
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    isMuted = !isMuted;
-                  });
-                },
-                child: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: isMuted ? Colors.red[100] : Colors.grey[100],
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    isMuted ? Icons.mic_off : Icons.mic,
-                    size: 28,
-                    color: isMuted ? Colors.red[600] : Colors.grey[700],
-                  ),
-                ),
+              _buildControlBtn(
+                icon: isMuted ? Icons.mic_off : Icons.mic,
+                active: isMuted,
+                onTap: () => setState(() => isMuted = !isMuted),
               ),
-              
-
               GestureDetector(
                 onTap: _endCall,
                 child: Container(
-                  width: 70,
-                  height: 70,
+                  width: 64,
+                  height: 64,
                   decoration: BoxDecoration(
-                    color: Colors.red[600],
+                    color: Color(0xFFC62828), // Red 800
                     shape: BoxShape.circle,
                   ),
-                  child: Icon(
-                    Icons.call_end,
-                    size: 32,
-                    color: Colors.white,
-                  ),
+                  child: Icon(Icons.call_end, size: 28, color: Colors.white),
                 ),
               ),
-              
-        
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    isSpeakerOn = !isSpeakerOn;
-                  });
-                },
-                child: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: isSpeakerOn ? Colors.blue[100] : Colors.grey[100],
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    isSpeakerOn ? Icons.volume_up : Icons.volume_down,
-                    size: 28,
-                    color: isSpeakerOn ? Colors.blue[600] : Colors.grey[700],
-                  ),
-                ),
+              _buildControlBtn(
+                icon: isSpeakerOn ? Icons.volume_up : Icons.volume_down,
+                active: isSpeakerOn,
+                onTap: () => setState(() => isSpeakerOn = !isSpeakerOn),
               ),
             ],
           ),
-          
           SizedBox(height: 20),
         ],
       ),
+    );
+  }
+
+  Widget _buildTag(String text) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      decoration: BoxDecoration(
+        color: Colors.grey[100],
+        border: Border.all(color: Colors.grey[300]!),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Text(text, style: TextStyle(fontSize: 12, color: textColor)),
     );
   }
 
@@ -492,15 +396,29 @@ class _ConversationScreenState extends State<ConversationScreen> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.blue[100],
-        borderRadius: BorderRadius.circular(16),
+        color: primaryColor.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(color: primaryColor.withOpacity(0.2)),
       ),
       child: Text(
-        topic,
-        style: TextStyle(
-          fontSize: 12,
-          color: Colors.blue[700],
+        topic.toUpperCase(),
+        style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: primaryColor),
+      ),
+    );
+  }
+  
+  Widget _buildControlBtn({required IconData icon, required bool active, required VoidCallback onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 50,
+        height: 50,
+        decoration: BoxDecoration(
+          color: active ? Colors.grey[300] : Colors.white,
+          shape: BoxShape.circle,
+          border: Border.all(color: Colors.grey[300]!),
         ),
+        child: Icon(icon, color: textColor, size: 24),
       ),
     );
   }
